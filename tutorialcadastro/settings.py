@@ -30,7 +30,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-INSTALLED_APPS = {
+INSTALLED_APPS = [
     # django apps
     'django.contrib.admin',
     'django.contrib.auth',
@@ -44,7 +44,10 @@ INSTALLED_APPS = {
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-}
+    'crispy_forms',
+    # local apps
+    'pages.apps.PagesConfig',
+]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -61,7 +64,7 @@ ROOT_URLCONF = 'tutorialcadastro.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -135,3 +138,15 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 SITE_ID = 1
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+LOGIN_REDIRECT_URL = "/"
+ACCOUNT_SESSION_REMEMBER = True
+ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_AUTHENTICATION_METHOD = "email"
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_UNIQUE_EMAIL = True
+
+# django crispy_forms
+
+CRISPY_TEMPLATES_PACK = 'bootstrap4'
